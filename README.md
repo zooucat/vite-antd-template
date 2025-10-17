@@ -1,73 +1,90 @@
-# React + TypeScript + Vite
+# vite-antd-template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A starter template built with **Vite**, **React**, **TypeScript**, and **Ant Design**.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- ⚡️ **Vite + React + TypeScript** for fast development
+- 🎨 **Ant Design v5** UI components with reset CSS
+- 🧩 **Theme customization** using Ant Design design tokens
+- 🧭 Simple project structure with `@` path alias
+- 📊 Optional bundle analyzer with `rollup-plugin-visualizer`
 
-## React Compiler
+## 🧰 Getting Started
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+1. **Clone the project**
 
-## Expanding the ESLint configuration
+   ```bash
+   git clone https://github.com/zooucat/vite-antd-template.git
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+   cd vite-antd-template
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. **Install dependencies**
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+   ```bash
+   # with yarn
+   yarn install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
+   # or pnpm
+   pnpm install
+
+   # or npm
+   npm install
+   ```
+
+3. **Start development server**
+
+   ```bash
+   # with yarn
+   yarn dev
+
+   # or pnpm
+   pnpm dev
+
+   # or npm
+   npm run dev
+   ```
+
+4. **Build for production**
+
+   ```bash
+   # with yarn
+   yarn build
+
+   # or pnpm
+   pnpm build
+
+   # or npm
+   npm run build
+   ```
+
+5. **(Optional) Analyze bundle**
+
+   After building, open dist/report.html to see chunk size and dependency visualization.
+
+## 🎨 Theming and Styles
+
+Ant Design v5 uses a new design token system for global customization.
+
+```typescript
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { ConfigProvider } from "antd";
+import App from "./App";
+import "antd/dist/reset.css";
+
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <ConfigProvider
+    theme={{
+      token: {
+        colorPrimary: "#1677ff",
+        borderRadius: 8,
+        fontSize: 14,
       },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+    }}
+  >
+    <App />
+  </ConfigProvider>
+);
 ```
