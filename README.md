@@ -88,3 +88,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   </ConfigProvider>
 );
 ```
+
+## 📦 License
+
+MIT License © 2025 — Open for personal and commercial use.
